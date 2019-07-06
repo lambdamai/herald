@@ -174,16 +174,16 @@ class DjangoTelegramBot(AppConfig):
                 try:
                     if bot_data.get('MESSAGEQUEUE_ENABLED', False):
                         q = mq.MessageQueue(
-                            all_burst_limit=b.get(
+                            all_burst_limit=bot_data.get(
                                 'MESSAGEQUEUE_ALL_BURST_LIMIT', 29),
-                            all_time_limit_ms=b.get(
+                            all_time_limit_ms=bot_data.get(
                                 'MESSAGEQUEUE_ALL_TIME_LIMIT_MS', 1024))
                         if proxy:
                             request = Request(
                                 proxy_url=proxy['proxy_url'],
                                 urllib3_proxy_kwargs=proxy[
                                     'urllib3_proxy_kwargs'],
-                                con_pool_size=b.get(
+                                con_pool_size=bot_data.get(
                                     'MESSAGEQUEUE_REQUEST_CON_POOL_SIZE', 8))
                         else:
                             request = Request(con_pool_size=bot_data.get(

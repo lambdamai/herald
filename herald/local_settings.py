@@ -2,8 +2,11 @@ ALLOWED_HOSTS = [
     '*',
 ]
 import os
+from dotenv import load_dotenv
 
-WEBHOOK_SITE = '<WEBHOOK_SITE_HERE>'
+load_dotenv()
+
+WEBHOOK_SITE = os.getenv('WEBHOOK_SITE','<WEBHOOK_SITE_HERE>')
 
 VIBER_BOT = {
     "VIBER_BOT_NAME": os.getenv('VIBER_BOT_NAME', '<NAME_BOT>'),
@@ -18,7 +21,7 @@ DJANGO_TELEGRAMBOT = {
     'MODE': 'WEBHOOK',
     'WEBHOOK_SITE': WEBHOOK_SITE,
     'WEBHOOK_PREFIX': '/bot',
-    'TOKEN': '<TOKEN_TELEGRAM_BOT>',
+    'TOKEN': os.getenv('TELEGRAM_TOKEN', '<TOKEN_TELEGRAM_BOT>'),
 }
 
 VK_BOT = {

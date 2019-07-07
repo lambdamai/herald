@@ -16,4 +16,4 @@ class User(models.Model):
     state = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.first_name, self.second_name)
+        return "{} {} {}".format(self.first_name, self.second_name, self.user_id)

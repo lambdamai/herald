@@ -1,7 +1,12 @@
 from django.db import models
 
 
+class StudyGroup(models.Model):
+    name = models.CharField(max_length=16)
+
 # Create your models here.
+
+
 class User(models.Model):
     """
         Модель пользователя
@@ -19,6 +24,8 @@ class User(models.Model):
     second_name = models.CharField(
         max_length=300, default='', blank=True, null=True, verbose_name="Фамилия")
     state = models.CharField(max_length=300, blank=True, null=True)
+    study_group = models.ForeignKey(
+        StudyGroup, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{} {} {}".format(self.first_name, self.second_name, self.user_id)

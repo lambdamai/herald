@@ -6,7 +6,7 @@ class User(models.Model):
     """
         Модель пользователя
     """
-    languages = ((0, 'Русский'), (1, 'Английский'))
+    languages = ((0, 'Русский'), (1, 'English'))
     choices = ((0, 'Telegram'), (1, 'Viber'), (2, 'VK'), (3, 'Facebook'))
     user_id = models.CharField(
         max_length=300, default='', primary_key=True, verbose_name="ID Пользователя")

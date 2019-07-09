@@ -10,6 +10,7 @@ from herald_bot.models import User
 
 logger = logging.getLogger(__name__)
 
+
 class FacebookTrigger(BaseTrigger):
     """
         Facebook триггер для State Machine
@@ -26,11 +27,11 @@ class FacebookTrigger(BaseTrigger):
 
         self.client.send_message(self.user_id, {
             "text": message,
-            "quick_replies":[{ 
-                "content_type" : "text",
+            "quick_replies": [{
+                "content_type": "text",
                 "title": b,
                 "payload": b
-                } for b in buttons]
+            } for b in buttons]
         })
 
     def send_message(self, message, whom=None):
@@ -55,7 +56,8 @@ class FacebookTrigger(BaseTrigger):
         :return: None
         """
         try:
-            new_user = User.objects.create(user_id=self.user_id, messenger=self.messenger)
+            new_user = User.objects.create(
+                user_id=self.user_id, messenger=self.messenger)
             new_user.save()
         except Exception as e:
             logger.error("Error on crete user: {}".format(e))
@@ -67,5 +69,5 @@ class FacebookTrigger(BaseTrigger):
         :param image_path: Путь на самом сервере
         :return:
         """
-        
+
         self.client.send_image(self.user_id, image_path)

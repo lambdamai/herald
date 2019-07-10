@@ -11,13 +11,13 @@ class User(models.Model):
     """
         Модель пользователя
     """
-    languages = ((0, 'Русский'), (1, 'English'))
+    languages = (('ru', 'Русский'), ('en', 'English'))
     choices = ((0, 'Telegram'), (1, 'Viber'), (2, 'VK'), (3, 'Facebook'))
     user_id = models.CharField(
         max_length=300, default='', primary_key=True, verbose_name="ID Пользователя")
     messenger = models.IntegerField(choices=choices, verbose_name="Мессенджер")
-    language = models.IntegerField(
-        choices=languages, verbose_name="Язык", blank=True, null=True)
+    language = models.CharField(
+        choices=languages, max_length=16, verbose_name="Язык", blank=True, null=True)
     read_invitation = models.BooleanField(default=False)
     first_name = models.CharField(
         max_length=300, default='', blank=True, null=True, verbose_name="Имя")

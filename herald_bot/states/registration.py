@@ -2,7 +2,7 @@ from herald_bot.handlers.core.state import BaseState as State
 from herald_bot.models import User
 from herald_bot.utils import is_group_exist
 
-languages = [language[1] for language in User.languages]
+languages = {v: k for k, v in dict(User.languages).items()}
 
 
 class ChooseGroupState(State):
@@ -25,7 +25,7 @@ class ChooseLanguageState(State):
     def on_trigger(self, trigger):
         if trigger.text in languages:
             user = trigger.get_user()
-            user.language = languages.index(trigger.text)
+            user.language = languages[trigger.text]
             user.save()
             return ChooseGroupState()
         else:
